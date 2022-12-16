@@ -12,3 +12,12 @@ module.exports.addUser = async (req, res) => {
     return res.status(500).json(err);
   }
 };
+
+module.exports.getUsers = async (req, res) => {
+  try {
+    let users = await User.find({});
+    return res.status(200).json(users);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
