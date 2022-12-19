@@ -1,9 +1,11 @@
 const Conversation = require("../models/Conversation");
 
+// create a new conversation
 module.exports.addConversation = async (req, res) => {
   try {
     const { senderId, receiverId } = req.body;
 
+    // find if the conversation already exists
     const conversation = await Conversation.findOne({
       members: { $all: [senderId, receiverId] },
     });
@@ -12,6 +14,7 @@ module.exports.addConversation = async (req, res) => {
       return res.status(200).json({ msg: "conversation already exists" });
     }
 
+    // create a new conversation with senderId and receiverId
     const newConversation = await Conversation.create({
       members: [senderId, receiverId],
     });
@@ -22,10 +25,12 @@ module.exports.addConversation = async (req, res) => {
   }
 };
 
+// get the conversation with given senderId and receiverId
 module.exports.getConversation = async (req, res) => {
   try {
     const { senderId, receiverId } = req.body;
 
+    // find the conversation with members
     const conversation = await Conversation.findOne({
       members: { $all: [senderId, receiverId] },
     });

@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const conversationSchema = new mongoose.Schema(
   {
+    // will contain senderId and receiverId
     members: {
       type: Array,
     },

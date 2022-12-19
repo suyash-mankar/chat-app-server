@@ -1,3 +1,6 @@
+// middleware to upload files to DB, executed before going to files_controller.uploadFile
+
+// use multer and multer-gridfs-storage to upload files directly to mongoDB
 const multer = require("multer");
 const { GridFsStorage } = require("multer-gridfs-storage");
 

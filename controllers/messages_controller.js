@@ -1,6 +1,7 @@
 const Message = require("../models/Message");
 const Conversation = require("../models/Conversation");
 
+// create a new message
 module.exports.addMessage = async (req, res) => {
   try {
     const newMessage = await Message.create(req.body);
@@ -16,6 +17,8 @@ module.exports.addMessage = async (req, res) => {
   }
 };
 
+
+// get the messages as per given conversation id
 module.exports.getMessage = async (req, res) => {
   try {
     let messages = await Message.find({ conversationId: req.params.id });
