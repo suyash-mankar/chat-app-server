@@ -17,14 +17,12 @@ db.once("open", function () {
   gfs.collection("fs");
 });
 
-const url = "http://localhost:8000";
-
 module.exports.uploadFile = async (req, res) => {
   try {
     if (!req.file) {
       return res.status(404).json("file not found");
     }
-    const fileUrl = `${url}/files/${req.file.filename}`;
+    const fileUrl = `${process.env.SERVER_URL}/files/${req.file.filename}`;
     return res.status(200).json(fileUrl);
   } catch (err) {
     return res.status(500).json(err);
